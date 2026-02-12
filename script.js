@@ -133,10 +133,10 @@ function setupFirstQuestionButtons() {
         window.location.href = url;
     });
 
-    // No button runs away when cursor gets near (hover or moving towards it)
+    // No button runs away only when cursor is close to the button (smaller radius)
     noBtn.style.position = 'fixed';
-    noBtn.style.zIndex = '100';
-    const runAwayDistance = 120;
+    noBtn.style.zIndex = '50';
+    const runAwayDistance = 55;
     const runAwayStep = 35;
     const padding = 20;
 

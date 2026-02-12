@@ -27,7 +27,7 @@ const CONFIG = {
     // Customize each question and its possible responses
     questions: {
         first: {
-            text: "Aashna, do you like me? 💕",
+            text: "Aashna, will you be my valentine? 💕",
             yesBtn: "Yes",
             noBtn: "No"
         },
