@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I will love you always 💝 — Aashna</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .always-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+        }
+        .always-photo {
+            width: 100%;
+            max-width: 360px;
+            height: 360px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            margin-bottom: 2rem;
+        }
+        .always-photo-placeholder {
+            width: 100%;
+            max-width: 360px;
+            height: 360px;
+            background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .always-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ff4757;
+            margin: 0 0 0.5rem 0;
+            text-shadow: 0 2px 10px rgba(255, 71, 87, 0.2);
+        }
+        .always-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            color: #ff6b6b;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="always-page">
+        <img id="ourPhoto" class="always-photo" src="" alt="Our photo" style="display: none;" />
+        <div id="photoPlaceholder" class="always-photo-placeholder">Our photo 💕</div>
+        <p class="always-message">I will love you always</p>
+        <p class="always-name">Aashna 💝</p>
+    </div>
+    <script src="config.js"></script>
+    <script>
+        (function() {
+            var photoUrl = (window.VALENTINE_CONFIG && window.VALENTINE_CONFIG.yesPage && window.VALENTINE_CONFIG.yesPage.photoUrl)
+                ? window.VALENTINE_CONFIG.yesPage.photoUrl : 'our-photo.jpg';
+            var msg = (window.VALENTINE_CONFIG && window.VALENTINE_CONFIG.yesPage && window.VALENTINE_CONFIG.yesPage.message)
+                ? window.VALENTINE_CONFIG.yesPage.message : 'I will love you always';
+            var img = document.getElementById('ourPhoto');
+            var placeholder = document.getElementById('photoPlaceholder');
+            document.querySelector('.always-message').textContent = msg;
+            img.onerror = function() {
+                img.style.display = 'none';
+                placeholder.style.display = 'flex';
+            };
+            img.onload = function() {
+                img.style.display = 'block';
+                placeholder.style.display = 'none';
+            };
+            img.src = photoUrl;
+        })();
+    </script>
+</body>
+</html>

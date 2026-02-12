@@ -65,7 +65,9 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('question1Text').textContent = config.questions.first.text;
     document.getElementById('yesBtn1').textContent = config.questions.first.yesBtn;
     document.getElementById('noBtn1').textContent = config.questions.first.noBtn;
-    document.getElementById('secretAnswerBtn').textContent = config.questions.first.secretAnswer;
+
+    // Yes on first question → go to "I will love you always" page; No button runs away from cursor
+    setupFirstQuestionButtons();
     
     // Set second question texts
     document.getElementById('question2Text').textContent = config.questions.second.text;
@@ -120,7 +122,46 @@ function showNextQuestion(questionNumber) {
     document.getElementById(`question${questionNumber}`).classList.remove('hidden');
 }
 
-// Function to move the "No" button when clicked
+// First question: Yes → go to "I will love you always" page; No → runs away from cursor
+function setupFirstQuestionButtons() {
+    const yesBtn = document.getElementById('yesBtn1');
+    const noBtn = document.getElementById('noBtn1');
+    if (!yesBtn || !noBtn) return;
+
+    yesBtn.addEventListener('click', () => {
+        const url = config.yesPage && config.yesPage.url ? config.yesPage.url : 'always.html';
+        window.location.href = url;
+    });
+
+    // No button runs away when cursor gets near (hover or moving towards it)
+    noBtn.style.position = 'fixed';
+    noBtn.style.zIndex = '100';
+    const runAwayDistance = 120;
+    const runAwayStep = 35;
+    const padding = 20;
+
+    document.addEventListener('mousemove', (e) => {
+        const rect = noBtn.getBoundingClientRect();
+        const btnCenterX = rect.left + rect.width / 2;
+        const btnCenterY = rect.top + rect.height / 2;
+        const dx = e.clientX - btnCenterX;
+        const dy = e.clientY - btnCenterY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < runAwayDistance && distance > 0) {
+            const nx = dx / distance;
+            const ny = dy / distance;
+            const newLeft = rect.left - nx * runAwayStep;
+            const newTop = rect.top - ny * runAwayStep;
+            const maxLeft = window.innerWidth - rect.width - padding;
+            const maxTop = window.innerHeight - rect.height - padding;
+            noBtn.style.left = Math.max(padding, Math.min(maxLeft, newLeft)) + 'px';
+            noBtn.style.top = Math.max(padding, Math.min(maxTop, newTop)) + 'px';
+        }
+    });
+}
+
+// Function to move the "No" button when clicked (used on Q3)
 function moveButton(button) {
     const x = Math.random() * (window.innerWidth - button.offsetWidth);
     const y = Math.random() * (window.innerHeight - button.offsetHeight);

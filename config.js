@@ -4,12 +4,17 @@
 
 const CONFIG = {
     // Your Valentine's name that will appear in the title
-    // Example: "Jade", "Sarah", "Mike"
-    valentineName: "Jade",
+    valentineName: "Aashna",
 
     // The title that appears in the browser tab
-    // You can use emojis! 💝 💖 💗 💓 💞 💕
-    pageTitle: "Will You Be My Valentine? 💝",
+    pageTitle: "Aashna, Will You Be My Valentine? 💝",
+
+    // Page shown when she clicks "Yes" (photo + message)
+    yesPage: {
+        url: "always.html",
+        photoUrl: "https://res.cloudinary.com/djtkbpx6y/image/upload/v1770856947/our-photo_yysduf.jpg",
+        message: "I will love you always"
+    },
 
     // Floating emojis that appear in the background
     // Find more emojis at: https://emojipedia.org
@@ -22,10 +27,9 @@ const CONFIG = {
     // Customize each question and its possible responses
     questions: {
         first: {
-            text: "Do you like me?",                                    // First interaction
-            yesBtn: "Yes",                                             // Text for "Yes" button
-            noBtn: "No",                                               // Text for "No" button
-            secretAnswer: "I don't like you, I love you! ❤️"           // Secret hover message
+            text: "Aashna, do you like me? 💕",
+            yesBtn: "Yes",
+            noBtn: "No"
         },
         second: {
             text: "How much do you love me?",                          // For the love meter
@@ -47,11 +51,11 @@ const CONFIG = {
         normal: "And beyond! 🥰"                           // Shows when they go past 100%
     },
 
-    // Messages that appear after they say "Yes!"
+    // Messages that appear after they say "Yes!" (used if you add more questions later)
     celebration: {
-        title: "Yay! I'm the luckiest person in the world! 🎉💝💖💝💓",
+        title: "Aashna, I'm the luckiest! 🎉💝💖",
         message: "Now come get your gift, a big warm hug and a huge kiss!",
-        emojis: "🎁💖🤗💝💋❤️💕"  // These will bounce around
+        emojis: "🎁💖🤗💝💋❤️💕"
     },
 
     // Color scheme for the website
@@ -73,10 +77,9 @@ const CONFIG = {
         heartExplosionSize: 1.5         // Size of heart explosion effect (1.2-2.0 recommended)
     },
 
-    // Background Music (Optional)
-    // Add your own music URL after getting proper licenses
+    // Background Music (Optional) - disabled (no song to host)
     music: {
-        enabled: true,                     // Music feature is enabled
+        enabled: false,                    // Music feature disabled
         autoplay: true,                    // Try to autoplay (note: some browsers may block this)
         musicUrl: "https://res.cloudinary.com/dncywqfpb/video/upload/v1738399057/music_qrhjvy.mp3", // Music streaming URL
         startText: "🎵 Play Music",        // Button text to start music
